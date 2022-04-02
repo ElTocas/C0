@@ -64,7 +64,7 @@ for i,x in enumerate(st.session_state.data["data"]):
     duration =   datetime.datetime.now() - x
     duration = duration.days
     differenzaDate.append(duration)
-    NomeECognome.append(str(st.session_state.data.loc[i,'nome']) + " " + str(t.session_state.data.loc[i,'cognome']))
+    NomeECognome.append(str(st.session_state.data.loc[i,'nome']) + " " + str(st.session_state.data.loc[i,'cognome']))
 
     if duration < Accettabile:
         colori.append("Accettabile")
