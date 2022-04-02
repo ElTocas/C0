@@ -10,7 +10,7 @@ st.set_page_config(layout="wide", page_title="Timer from Rachel call")
 filename = "this_data.csv"
 
 with open(filename) as f:
-   st.download_button('Download CSV', f)
+   st.sidebar.download_button('Download all the person', f)
 
 st.title("Persone da contattare")
 container = st.sidebar.container()
