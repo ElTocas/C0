@@ -85,7 +85,7 @@ if st.button("Delete selected"):
         newData = st.session_state.data.drop(st.session_state.index_to_delete)
         newData.to_csv(filename,index=False)
     st.session_state.index_to_delete = []
-    raise st.script_runner.RerunException(st.script_request_queue.RerunData(None))
+    st.experimental_rerun()
 
 
 if st.button("Reset"):
