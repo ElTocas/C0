@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 
-import plotly.express as px
+#import plotly.express as px
 from os.path import exists
 
 filename = "this_data.csv"
@@ -64,9 +64,9 @@ for i,x in enumerate(st.session_state.data["data"]):
 st.session_state.data["tempoTrascorso"] = differenzaDate
 st.session_state.data["warnings"] = colori
 
-pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color="warnings",hover_data=["phone"])    
+#pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color="warnings",hover_data=["phone"])    
 st.dataframe(st.session_state.data)
-st.plotly_chart(pf)
+#st.plotly_chart(pf)
 
 
 c1,c2 = st.columns([4,1])
