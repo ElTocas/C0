@@ -1,5 +1,3 @@
-from matplotlib.axis import YAxis
-from matplotlib.pyplot import ticklabel_format
 import streamlit as st
 import pandas as pd
 import datetime
