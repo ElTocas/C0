@@ -2,4 +2,3 @@ pandas
 numpy
 streamlit == 1.4.0
 datetime
-os
