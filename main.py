@@ -20,7 +20,7 @@ id = datetime.datetime.now()
 
 if st.sidebar.button("aggiungi"):
     #if "nuovaPersona" not in st.session_state:
-    st.session_state["nuovaPersona"] =  {"id":[datetime.datetime.now()],"nome":[nome],"cognome":[cognome],"data":[data],"phone":[numeroTelefono]}
+    st.session_state["nuovaPersona"] =  {"id":[datetime.datetime.now()],"nome":[str(nome)],"cognome":[str(cognome)],"data":[data],"phone":[str(numeroTelefono)]}
 
 
 
@@ -64,7 +64,7 @@ for i,x in enumerate(st.session_state.data["data"]):
     duration =   datetime.datetime.now() - x
     duration = duration.days
     differenzaDate.append(duration)
-    NomeECognome.append(st.session_state.data.loc[i,'nome'] + " " + st.session_state.data.loc[i,'cognome'])
+    NomeECognome.append(str(st.session_state.data.loc[i,'nome']) + " " + str(t.session_state.data.loc[i,'cognome']))
 
     if duration < Accettabile:
         colori.append("Accettabile")
