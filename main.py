@@ -52,7 +52,7 @@ if "nuovaPersona" in st.session_state:
 
 # Tempo trascorso
 Accettabile=3
-Medio=8
+Medio=7
 Inaccettabile=11
 
 
