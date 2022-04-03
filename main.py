@@ -10,19 +10,20 @@ st.set_page_config(layout="wide", page_title="Timer from Rachel call")
 filename = "this_data.csv"
 
 with open(filename) as f:
-   st.sidebar.download_button('Download all the person', f)
+   st.sidebar.download_button('Download data', f)
 
 st.title("Persone da contattare")
 container = st.sidebar.container()
-data = container.date_input("Data Appuntamento Rachel", datetime.datetime.now())
+data = container.date_input("Data Appuntamento", datetime.datetime.now())
 nome = container.text_input("Nome")
 cognome = container.text_input("Cognome")
 numeroTelefono = container.text_input("Telefono")
+email = container.text_input("e-mail")
 id = datetime.datetime.now()
 
-if st.sidebar.button("aggiungi"):
+if st.sidebar.button("Aggiungi"):
     #if "nuovaPersona" not in st.session_state:
-    st.session_state["nuovaPersona"] =  {"id":[datetime.datetime.now()],"nome":[str(nome)],"cognome":[str(cognome)],"data":[data],"phone":[str(numeroTelefono)]}
+    st.session_state["nuovaPersona"] =  {"id":[datetime.datetime.now()],"nome":[str(nome)],"cognome":[str(cognome)],"data":[data],"phone":[str(numeroTelefono)],"email":[str(email)]}
 
 
 
@@ -35,9 +36,10 @@ if "nuovaPersona" in st.session_state:
     temp.caption("nome: " + str(a["nome"][0]))
     temp.caption("Cognome: " + str(a["cognome"][0]))
     temp.caption("Phone: " + str(a["phone"][0]))
+    temp.caption("email: " + str(a["email"][0]))
     temp.caption("Data Iscrizione: " + str(a["data"][0]))
     #st.sidebar.dataframe(a)
-    if st.sidebar.button("salva"):
+    if st.sidebar.button("Salva"):
         if not exists(filename): 
             a.to_csv(filename,index=False)
         else:
@@ -68,9 +70,9 @@ for i,x in enumerate(st.session_state.data["data"]):
     differenzaDate.append(duration)
     NomeECognome.append(str(st.session_state.data.loc[i,'nome']) + " " + str(st.session_state.data.loc[i,'cognome']))
 
-    if duration < Accettabile:
+    if duration <= Accettabile:
         colori.append("Accettabile")
-    elif duration <Medio:
+    elif duration <= Medio:
         colori.append("Da risolvere")
     else :
         colori.append("Urgente")
@@ -79,21 +81,22 @@ for i,x in enumerate(st.session_state.data["data"]):
 st.session_state.data["tempoTrascorso"] = differenzaDate
 st.session_state.data["warnings"] = colori
 
-pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color = "warnings" ,hover_data=["phone"], color_discrete_map={"Accettabile": "green","Da risolvere": "blue","Urgente":"red"},opacity=0.6,text="tempoTrascorso")  
+pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color = "warnings" ,hover_data=["phone","email"], color_discrete_map={"Accettabile": "green","Da risolvere": "orange","Urgente":"red"},opacity=0.6,text="tempoTrascorso")  
 st.plotly_chart(pf)
 
 
-c1,c2,cx,cx1,c3 = st.columns([3,2,2,1,2])
+c1,c2,c4,cx1,c3 = st.columns([3,2,2,1,2])
 if "index_to_delete" not in st.session_state:
     st.session_state.index_to_delete = []
 
 for i,x in enumerate(st.session_state.data["nome"]):
     text_to_show = x + " " + st.session_state.data.loc[i,"cognome"]
+    c2.text(st.session_state.data.loc[i,"email"])
     if c1.button(text_to_show):
-        c2.text("da rimuovere")
+        c4.text("da rimuovere")
         st.session_state.index_to_delete.append(i)
     else:
-        c2.text("In lavorazione")
+        c4.text("In lavorazione")
     
 
 if c3.button("Delete selected"):
