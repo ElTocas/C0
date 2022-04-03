@@ -4,6 +4,7 @@ import datetime
 
 import plotly.express as px
 from os.path import exists
+from os import remove
 
 st.set_page_config(layout="wide", page_title="Data Reminder")
 
@@ -12,6 +13,10 @@ filename = "newData.csv"
 if exists (filename):
     with open(filename) as f:
         st.sidebar.download_button('Download data', f)
+if exists (filename):
+    if st.sidebar.button('Delete data'):
+        remove(filename)
+
 
 st.title("Persone da contattare")
 container = st.sidebar.container()
