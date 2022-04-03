@@ -82,7 +82,7 @@ for i,x in enumerate(st.session_state.data["data"]):
 st.session_state.data["tempoTrascorso"] = differenzaDate
 st.session_state.data["warnings"] = colori
 
-pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color = "warnings" ,hover_data=["phone","email"], color_discrete_map={"Accettabile": "green","Da risolvere": "orange","Urgente":"red"},opacity=0.6,text="tempoTrascorso")  
+pf = px.bar(st.session_state.data, y=NomeECognome,x="tempoTrascorso",orientation='h',color = "warnings" ,hover_data=["phone","email","data"], color_discrete_map={"Accettabile": "green","Da risolvere": "orange","Urgente":"red"},opacity=0.6,text="tempoTrascorso")  
 pf.update_layout(xaxis={'showticklabels': False})
 st.plotly_chart(pf)
 
