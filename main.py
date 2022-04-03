@@ -9,8 +9,9 @@ st.set_page_config(layout="wide", page_title="Timer from Rachel call")
 
 filename = "newData.csv"
 
-with open(filename) as f:
-   st.sidebar.download_button('Download data', f)
+if exists (filename):
+    with open(filename) as f:
+        st.sidebar.download_button('Download data', f)
 
 st.title("Persone da contattare")
 container = st.sidebar.container()
