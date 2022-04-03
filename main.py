@@ -92,7 +92,7 @@ try:
 
     for i,x in enumerate(st.session_state.data["nome"]):
         text_to_show = x + " " + st.session_state.data.loc[i,"cognome"]
-        c2.text(st.session_state.data.loc[i,"email"])
+        c2.text(st.session_state.data.loc[i,"phone"])
         if c1.button(text_to_show):
             c4.text("da rimuovere")
             st.session_state.index_to_delete.append(i)
